@@ -155,6 +155,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Top Bar */}
       <div
         style={{
           position: 'fixed',
@@ -180,6 +181,7 @@ export default function App() {
         </div>
       </div>
 
+      {/* Main Cookie Section */}
       <div style={{ paddingTop: 74, paddingBottom: 120 }}>
         {cookieData.map((c, idx) => (
           <section
@@ -285,6 +287,7 @@ export default function App() {
           </section>
         ))}
 
+        {/* About Section */}
         <section
           style={{
             minHeight: '40vh',
@@ -348,128 +351,7 @@ export default function App() {
         </section>
       </div>
 
-      <AnimatePresence>
-        {isOrderOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 80
-            }}
-          >
-            <div
-              style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.28)' }}
-              onClick={() => setIsOrderOpen(false)}
-            ></div>
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              style={{
-                background: '#fff',
-                borderRadius: 20,
-                padding: 18,
-                width: '92%',
-                maxWidth: 420,
-                boxShadow: '0 18px 40px rgba(0,0,0,0.12)'
-              }}
-            >
-              <h3 style={{ fontWeight: 800, fontSize: 18 }}>Order {selected.name}</h3>
-              <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 10 }}>
-                <div>
-                  <label style={{ fontSize: 12, fontWeight: 700 }}>Rating</label>
-                  <div style={{ marginTop: 6 }}>
-                    <Stars value={form.rating} onRate={(v) => setForm((s) => ({ ...s, rating: v }))} />
-                  </div>
-                </div>
-                <div>
-                  <label style={{ fontSize: 12, fontWeight: 700 }}>Quantity</label>
-                  <input
-                    type="number"
-                    min={1}
-                    value={form.quantity}
-                    onChange={(e) =>
-                      setForm((s) => ({ ...s, quantity: Number(e.target.value) }))
-                    }
-                    style={{
-                      width: '100%',
-                      marginTop: 6,
-                      padding: 10,
-                      borderRadius: 10,
-                      border: '1px solid #e6e6e6'
-                    }}
-                  />
-                </div>
-                <div>
-                  <label style={{ fontSize: 12, fontWeight: 700 }}>Your email</label>
-                  <input
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => setForm((s) => ({ ...s, email: e.target.value }))}
-                    style={{
-                      width: '100%',
-                      marginTop: 6,
-                      padding: 10,
-                      borderRadius: 10,
-                      border: '1px solid #e6e6e6'
-                    }}
-                    placeholder="you@example.com"
-                  />
-                </div>
-                <div>
-                  <label style={{ fontSize: 12, fontWeight: 700 }}>Notes (optional)</label>
-                  <textarea
-                    value={form.notes}
-                    onChange={(e) => setForm((s) => ({ ...s, notes: e.target.value }))}
-                    style={{
-                      width: '100%',
-                      marginTop: 6,
-                      padding: 10,
-                      borderRadius: 10,
-                      border: '1px solid #e6e6e6'
-                    }}
-                    rows={3}
-                  />
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                  }}
-                >
-                  <button
-                    onClick={() => setIsOrderOpen(false)}
-                    style={{ padding: '10px 14px', borderRadius: 10 }}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    disabled={sending}
-                    onClick={sendOrder}
-                    style={{
-                      padding: '10px 14px',
-                      borderRadius: 10,
-                      background: '#000',
-                      color: '#fff',
-                      fontWeight: 700
-                    }}
-                  >
-                    {sending ? 'Sending...' : 'Send Order'}
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+      {/* Order Modal */}
       <AnimatePresence>
         {showThanks && (
           <motion.div
@@ -482,37 +364,33 @@ export default function App() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              zIndex: 90
+              zIndex: 90,
+              background: 'rgba(0,0,0,0.3)',
+              backdropFilter: 'blur(4px)'
             }}
           >
-            <div
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'rgba(0,0,0,0.18)',
-                backdropFilter: 'blur(4px)'
+                background: '#fff',
+                borderRadius: 16,
+                padding: 18,
+                boxShadow: '0 18px 40px rgba(0,0,0,0.12)'
               }}
-            ></div>
-           <motion.div
-  initial={{ scale: 0.9, opacity: 0 }}
-  animate={{ scale: 1, opacity: 1 }}
-  exit={{ scale: 0.9, opacity: 0 }}
-  style={{
-    background: '#fff',
-    borderRadius: 16,
-    padding: 18,
-    boxShadow: '0 18px 40px rgba(0,0,0,0.12)'
-  }}
->
-  <div style={{ textAlign: 'center' }}>
-    <div style={{ fontSize: 24 }}>✨</div>
-    <h4 style={{ fontWeight: 800, marginTop: 8 }}>Thanks for your order!</h4>
-    <p style={{ color: '#666', marginTop: 6 }}>We’ll contact you soon 💌</p>
-  </div>
-</motion.div>
+            >
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: 24 }}>✨</div>
+                <h4 style={{ fontWeight: 800, marginTop: 8 }}>Thanks for your order!</h4>
+                <p style={{ color: '#666', marginTop: 6 }}>We’ll contact you soon 💌</p>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Floating Order Button */}
       <div
         style={{
           position: 'fixed',
