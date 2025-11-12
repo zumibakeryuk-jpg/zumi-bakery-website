@@ -493,25 +493,23 @@ export default function App() {
                 backdropFilter: 'blur(4px)'
               }}
             ></div>
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              style={{
-                background: '#fff',
-                borderRadius: 16,
-                padding: 18,
-                boxShadow: '0 18px 40px rgba(0,0,0
-boxShadow: '0 18px 40px rgba(0,0,0
-,0.12)' }}
-            >
-              <div style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: 24 }}>✨</div>
-                <h4 style={{ fontWeight: 800, marginTop: 8 }}>Thanks for your order!</h4>
-                <p style={{ color: '#666', marginTop: 6 }}>We’ll contact you soon 💌</p>
-              </div>
-            </motion.div>
-          </motion.div>
+           <motion.div
+  initial={{ scale: 0.9, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  exit={{ scale: 0.9, opacity: 0 }}
+  style={{
+    background: '#fff',
+    borderRadius: 16,
+    padding: 18,
+    boxShadow: '0 18px 40px rgba(0,0,0,0.12)'
+  }}
+>
+  <div style={{ textAlign: 'center' }}>
+    <div style={{ fontSize: 24 }}>✨</div>
+    <h4 style={{ fontWeight: 800, marginTop: 8 }}>Thanks for your order!</h4>
+    <p style={{ color: '#666', marginTop: 6 }}>We’ll contact you soon 💌</p>
+  </div>
+</motion.div>
         )}
       </AnimatePresence>
 
@@ -544,4 +542,3 @@ boxShadow: '0 18px 40px rgba(0,0,0
     </div>
   );
 }
-
